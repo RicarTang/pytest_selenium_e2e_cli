@@ -1,0 +1,2 @@
+# pytest_selenium_e2e_cli
+使用pytest+selenium+allure搭建e2e自动化测试框架CLI
