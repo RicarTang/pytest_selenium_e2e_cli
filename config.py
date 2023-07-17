@@ -7,7 +7,9 @@ ROOT_PATH = os.path.dirname(__file__)
 REPORT_DATE = os.path.join(ROOT_PATH,'report_data')
 # allure报告目录
 REPORT_DATE = os.path.join(ROOT_PATH,'allure_report')
+
 # 日志级别
-LOG_LEVER = "INFO"
+STREAM_LOG_LEVEL = "DEBUG"
+FILE_LOG_LEVEL = "INFO"
 # 日志格式
-LOG_FORMATER = ""
+LOG_FORMATTER = "%(levelname)s:     %(asctime)s - %(filename)s - %(funcName)s - line: %(lineno)d - message: %(message)s"

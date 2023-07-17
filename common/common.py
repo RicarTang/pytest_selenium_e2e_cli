@@ -5,8 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
-import config
-
+import config as config
 
 
 class Common:
@@ -40,7 +39,7 @@ class Common:
     
     def save_screenshot(self):
         """屏幕捕获"""
-        img = os.path.join(config.ROOT_PATH,'screenshot','error',f"{time.strftime('%Y-%m-%d %H-%M-%S')}.png")
+        img = os.path.join(config.ROOT_PATH, 'screenshot', 'error', f"{time.strftime('%Y-%m-%d %H-%M-%S')}.png")
         # 保存图片到本地
         self.driver.save_screenshot(img) 
         
