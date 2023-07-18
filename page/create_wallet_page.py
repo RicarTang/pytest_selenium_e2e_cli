@@ -1,29 +1,42 @@
 """创建钱包页页面模型"""
+import allure
+from .base_page import BasePage
 
-from common.common import Common
-
-class CreateWalletPage(Common):
+class CreateWalletPage(BasePage):
     # locator
-    # 返回按钮
-    go_back_button = ("xpath","//button[@mode='icon']")
-    # 钱包名称input
-    wallet_name_input = ("xpath","//input[@placeholder='输入1~12个字符']")
-    # 钱包密码input
-    wallet_pwd_input = ("xpath","//input[@placeholder='密码至少8个字符']")
-    # 确认密码input
-    wallet_confirm_pwd_input = ("xpath","//input[@placeholder='确认密码']")
-    # 密码提示input
-    wallet_pwd_hint_input = ("xpath","//input[@placeholder='输入密码提示信息']")
     # 选择助记词语言button
-    Choose_mnemonic_language_button = ("xpath","//button/div[contains((text()),'English')]")
+    choose_mnemonic_language_button = ("xpath","//button/div[contains((text()),'English')]")
     # 选择助记词数量button
-    Choose_mnemonic_number_button = ("xpath","//button/div[contains((text()),'12 个字')]")
+    choose_mnemonic_number_button = ("xpath","//button/div[contains((text()),'12 个字')]")
+    # 用户协议checkbox
+    user_agreement_checkbox = ("xpath","//input[@type='checkbox'and@id='agree']")
+    # 用户协议
+    user_agreement = ("xpath","//label[@for='agree']")
+    # 创建钱包button
+    create_wallet_submit = ("xpath","//button[@type='submit']")
 
-    # acton
-    def click_go_back(self):
-        """点击返回按钮"""
-        self.click(self.go_back_button)
+    # acton    
+    @allure.step("点击选择助记词语言")
+    def click_choose_mnemonic_language(self):
+        """点击选择助记词语言"""
+        self.click(self.choose_mnemonic_language_button)
 
-    def input_wallet_name(self,wallet_name:str):
-        """输入钱包名称"""
-        self.input(self.wallet_name_input,wallet_name)
+    @allure.step("点击选择助记词数量")
+    def click_choose_mnemonic_number(self):
+        """点击选择助记词数量"""
+        self.click(self.choose_mnemonic_number_button)
+
+    @allure.step("点击勾选用户协议")
+    def click_user_agreement_checkbox(self):
+        """点击勾选用户协议"""
+        self.click(self.user_agreement_checkbox)
+
+    @allure.step("点击查看用户协议")
+    def click_view_user_agreement(self):
+        """点击查看用户协议"""
+        self.click(self.user_agreement)
+    
+    @allure.step("点击创建钱包按钮")
+    def click_create_wallet_submit_button(self):
+        """点击创建钱包按钮"""
+        self.click(self.create_wallet_submit)
