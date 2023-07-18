@@ -10,6 +10,7 @@ def log_util():
     logger.setLevel(config.STREAM_LOG_LEVEL)
     # 判断log文件夹是否存在，不存在创建log目录
     is_exists = os.path.exists(os.path.join(os.path.dirname(__file__), "../log"))
+    print(is_exists)
     if not is_exists:
         os.makedirs(os.path.join(os.path.dirname(__file__), "../log"))
     # 文件日志处理器

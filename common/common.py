@@ -16,25 +16,33 @@ class Common:
         # 使用webdriver_manager自动下载安装驱动，省去手动下载
         return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     
-    def locator(self,ele):
-        """显示等待元素定位"""
-        return WebDriverWait(self.dr, 10, 1).until(lambda x: x.find_element(*ele))
+    def locator(self,ele:tuple):
+        """显示等待元素定位
+
+        Args:
+            ele (tuple): 定位器
+
+        Returns:
+            _type_: webdriver
+        """
+        return WebDriverWait(self.driver, 10, 1).until(lambda x: x.find_element(*ele))
 
     
     def input(self, ele, value):
         """输入"""
-        ele = self.locator(ele)
-        ele.send_keys(value)
+        dr = self.locator(ele)
+        dr.send_keys(value)
 
     def click(self, ele):
-        """点击"""
-        ele = self.locator(ele)
-        ele.click()
+        """点击元素"""
+        dr = self.locator(ele)
+        print(type(dr))
+        dr.click()
 
     def text(self, ele):
         """提取文字"""
-        ele = self.locator(ele)
-        return ele.text
+        dr = self.locator(ele)
+        return dr.text
 
     
     def save_screenshot(self):
