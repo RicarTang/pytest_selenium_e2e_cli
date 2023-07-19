@@ -21,3 +21,8 @@ class ConfirmMnemonicPage(BasePage):
     def click_cancel_auto_complete_mnemonic_button(self):
         """点击取消自动补全助记词按钮"""
         self.click(self.cancel_auto_complete_mnemonic_button)
+
+    @allure.step("点击确认助记词完成按钮")
+    def click_confirm_mnemonic_finish_button(self):
+        """点击确认助记词完成按钮"""
+        self.click(self.confirm_finish_button)

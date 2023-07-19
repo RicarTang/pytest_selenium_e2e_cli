@@ -11,7 +11,7 @@ class CreateWalletPage(BasePage):
     # 用户协议checkbox
     user_agreement_checkbox = ("xpath","//input[@type='checkbox'and@id='agree']")
     # 用户协议
-    user_agreement = ("xpath","//label[@for='agree']")
+    user_agreement = ("xpath","//span[text()='用户协议']")
     # 创建钱包button
     create_wallet_submit = ("xpath","//button[@type='submit']")
 
