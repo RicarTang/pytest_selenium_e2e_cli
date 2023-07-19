@@ -41,7 +41,7 @@ class TestLoginWallet:
                 os.path.join(config.TESTCASE_DATA_PATH, "create_wallet_data.yaml")
             ),
         )
-        def test_create_wallet_fail_case(self, data: dict):
+        def test_create_wallet_case(self, data: dict):
             """创建钱包测试用例"""
             allure.dynamic.title(data["title"])
             self.click_create_wallet_button()
@@ -57,10 +57,12 @@ class TestLoginWallet:
             )
             if data["expect"]["is_enabled"] is True:
                 if data["title"] == "成功创建钱包,跳过备份":
+                    # 跳过备份流程
                     self.click_skip_backup_mnemonic_button()
                     self.click_backup_abort_button()
                     assert True  # 断言主页元素
                 else:
+                    # 备份流程
                     self.click_backup_mnemonic_button()
                     self.click_confirm_backedup_button()
                     self.click_confirm_auto_complete_mnemonic_button()
