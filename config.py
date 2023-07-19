@@ -3,6 +3,8 @@ import os
 
 # 项目根目录
 ROOT_PATH = os.path.dirname(__file__)
+# 目标url
+TEST_URL = "http://127.0.0.1:6939"
 # pytest report目录
 REPORT_DATA = os.path.join(ROOT_PATH,'report_data')
 # allure报告目录

@@ -2,12 +2,10 @@
 import os
 import time
 import threading
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
-import config as config
+import config
+from utils.driver_manager import install_driver
 
 
 # class Singleton(type):
@@ -25,10 +23,19 @@ import config as config
 
 
 class Common:
-    """公共类"""
+    """
+    公共类,
+    对selenium的一些封装
+    """
+    driver = install_driver()
 
-    # 使用webdriver_manager自动下载安装驱动，省去手动下载
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    def get(self,url_path:str):
+        """封装driver.get()
+
+        Args:
+            url_path (str): 前端路由
+        """
+        self.driver.get(url=config.TEST_URL+url_path)
 
     def locator(self, ele: tuple) -> WebElement:
         """显示等待元素定位
@@ -37,7 +44,7 @@ class Common:
             ele (tuple): 定位器
 
         Returns:
-            _type_: WebElement
+            WebElement: web元素对象
         """
         return WebDriverWait(self.driver, 10, 1).until(lambda x: x.find_element(*ele))
 
@@ -52,17 +59,33 @@ class Common:
         webele.send_keys(value)
 
     def click(self, ele:tuple):
-        """点击元素"""
+        """点击元素
+
+        Args:
+            ele (tuple): WebElement
+        """
         webele = self.locator(ele)
         webele.click()
 
     def text(self, ele:tuple):
-        """提取文字"""
+        """获取文字
+
+        Args:
+            ele (tuple): WebElement
+        """
         webele = self.locator(ele)
         return webele.text
     
-    def get_attribute(self,ele:tuple,attribute:str):
-        """获取元素属性值"""
+    def get_attribute(self,ele:tuple,attribute:str) -> str:
+        """获取元素属性值
+
+        Args:
+            ele (tuple): WebElement
+            attribute (str): 元素属性名称
+
+        Returns:
+            str: attribute属性值
+        """
         webele = self.locator(ele)
         return webele.get_attribute(attribute)
 

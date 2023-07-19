@@ -23,7 +23,8 @@ class TestCreateWallet(
     @pytest.mark.create_wallet
     @pytest.mark.parametrize("data",LoadFile(os.path.join(config.TESTCASE_DATA_PATH,"create_wallet_data.yaml")))
     def test_create_wallet(self,data):
-        self.driver.get("http://127.0.0.1:6939/")
+        allure.dynamic.title(data["title"])
+        self.get("/")
         self.click_create_wallet_button()
         self.input_wallet_name(data["data"]["wallet_name"])
         self.input_wallet_pwd(data["data"]["wallet_pwd"])
