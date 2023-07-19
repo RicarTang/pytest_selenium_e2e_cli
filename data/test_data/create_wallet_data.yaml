@@ -26,6 +26,15 @@
   expect: 
     is_enabled: False
 -
+  title: 钱包确认密码为空创建钱包
+  data:
+    wallet_name: tang
+    wallet_pwd: 12345678
+    wallet_confirm_pwd: ""
+    wallet_pwd_hint: 12345678
+  expect: 
+    is_enabled: False
+-
   title: 钱包密码为7位字符创建钱包
   data:
     wallet_name: tang
